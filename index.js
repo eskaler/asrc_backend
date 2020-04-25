@@ -15,6 +15,13 @@ app.get('/object/all', function(req, res) {
   });
 })
 
+app.get('/event/:dateFrom/:dateTo/data', async function(req, res) {
+  var query = `SELECT * FROM events where date_time >= $1 and date_time <= $2;`;  
+  console.log(query)     ;
+  var data = await pg.execute(query, [req.params.dateFrom, req.params.dateTo]);
+  res.send(data);
+})
+
 app.get('/object/:tableName/description', function(req, res) {
   pg.execute(sql.objectDescription, [req.params.tableName]).then(response=>{
     res.send(response);
