@@ -5,7 +5,7 @@
 npm install
 ```
 
-### Compiles and hot-reloads for development
+### Run
 ```
-nodemon index.js
+node index.js start
 ```
