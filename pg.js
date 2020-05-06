@@ -1,12 +1,11 @@
 var pgp = require('pg-promise')();
+var pgconfig = require('./pgconfig');
+pgp.pg.types.setTypeParser(1114, (value)=>{
+  // console.log(value);
+  return value;
+});
 
-var db = pgp( {
-  host: 'localhost',
-  port: 5432,
-  database: 'asrcdb',
-  user: 'postgres',
-  password: '123456'
-})
+var db = pgp( pgconfig.config );
 
 module.exports = {
   execute: (query, params)=>{
